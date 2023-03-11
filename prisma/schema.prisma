@@ -7,20 +7,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ** -------------------- Définition des modèles User et Bookmark
 model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String @unique
+  email String @unique // Définit l'adresse e-mail comme étant unique
   hash  String
 
-  firstname String?
-  lastname  String?
+  firstname String? // Définit le prénom comme étant optionnel
+  lastname  String? // Définit le prénom comme étant optionnel
 
   bookMarks BookMark[]
 
-  @@map("users")
+  @@map("users") //? Définit le nom de la table en base de données comme étant users
 }
 
 model BookMark {
@@ -32,7 +33,10 @@ model BookMark {
   description String?
   link        String
   userID      Int
-  user        User    @relation(fields: [userID], references: [id])
+  user        User    @relation(fields: [userID], references: [id]) //? Définit une relation entre le modèle User et le modèle Bookmark
+  // user        User    @relation(fields: [userID], references: [id], onDelete:Cascade) //! Définit une relation entre le modèle User et le modèle Bookmark puis la suppression en Cascade, ce qui supprime les données de cette table avec les données de la table liée..
 
-  @@map("bookMarks")
+  @@map("bookMarks") //? Définit le nom de la table en base de données comme étant bookMarks
 }
+
+//? Ce code définit une structure de base de données pour les modèles User et BookMark. Il définit des champs tels que l'ID, la date de création et la date de mise à jour, ainsi que les champs spécifiques à chaque modèle. Il définit également des relations entre les modèles, en référençant l'ID de l'utilisateur dans le modèle BookMark. Enfin, le code définit les tables dans lesquelles les données seront stockées (users et bookMarks). 
