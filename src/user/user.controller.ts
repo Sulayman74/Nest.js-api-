@@ -28,10 +28,11 @@ export class UserController {
     // }
     @HttpCode(HttpStatus.ACCEPTED)
     @Patch()
-    editProfile(@GetUser('id') userID: number, @Body() dto: EditUserDto) {
-        return this._userService.editUser(userID, dto)
+    editProfile(@GetUser('id') id: number, @Body() dto: EditUserDto) {
+        console.log("patch du controller", id);
+        return this._userService.editUser(id, dto)
     }
-
+    //? --------------- Un patch HTTPRequest est utilisé pour mettre à jour partiellement une ressource sur un serveur, tandis qu'un Put HTTPRequest est utilisé pour remplacer entièrement une ressource existante. Par conséquent, lorsque vous souhaitez modifier certaines parties d'une ressource, un patch HTTPRequest est préférable, car il est plus rapide et plus efficace.
 
 }
 
