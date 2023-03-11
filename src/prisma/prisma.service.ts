@@ -5,15 +5,24 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class PrismaService extends PrismaClient {
-    constructor(private _config: ConfigService) {
+    constructor(config: ConfigService) {
         super({
             datasources: {
                 db: {
-                    url: _config.get('DATABASE_URL')
+                    url: config.get('DATABASE_URL')
                 }
             }
 
 
         })
+    }
+
+    cleanDb() {
+        return this.$transaction([
+            this.bookMark.deleteMany(),
+            this.user.deleteMany()
+        ])
+
+
     }
 }
