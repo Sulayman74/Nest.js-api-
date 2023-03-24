@@ -19,13 +19,13 @@ export class AuthController {
     @HttpCode(HttpStatus.CREATED)
     @Post('signup')
     signUp(@Body() dto: RegisterDto) {
-        console.log(dto);
+        // console.log(dto);
         return this._authService.signUp(dto)
     }
     @HttpCode(HttpStatus.ACCEPTED)
     @Post('signin')
     signIn(@Body() dto: AuthDto) {
-        console.log(dto);
+        // console.log(dto);
         return this._authService.login(dto)
     }
 

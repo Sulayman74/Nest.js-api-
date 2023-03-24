@@ -35,6 +35,7 @@ return this._bookmarkService.getBookmarkByID(userID,bookmarkID)
         @GetUser('id') userID: number,bookmarkID:number,
         @Body() dto: EditBookmarkDTO
     ) {
+        console.log(userID,bookmarkID,dto);
 return this._bookmarkService.editBookmark(userID,bookmarkID,dto)
     }
 
